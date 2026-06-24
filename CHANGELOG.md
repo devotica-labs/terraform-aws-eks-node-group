@@ -8,6 +8,13 @@ Releases are cut automatically by `release-please` on merge to `main`,
 driven by Conventional Commit prefixes (`feat:` → minor, `fix:`/`docs:`/`chore:` → patch,
 `feat!:` or `BREAKING CHANGE:` footer → major).
 
+## 0.1.0 (2026-06-24)
+
+
+### Features
+
+* native EKS managed node group (fintech-hardened, cloudposse-standard) ([6d9cecd](https://github.com/devotica-labs/terraform-aws-eks-node-group/commit/6d9cecdf4b89154883d77f4fe0be01aac0ad3590))
+
 ## [Unreleased]
 
 ### Added
