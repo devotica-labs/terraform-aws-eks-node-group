@@ -1,0 +1,20 @@
+# CODEOWNERS for terraform-aws-eks-node-group
+#
+# This module provisions worker nodes, their IAM role, and the launch-template
+# security posture (disk encryption, IMDS). Security owns the resource + input
+# surface.
+#
+# Per Module-Repo Plan v1.3 §16 governance.
+
+# Default: every change requires both teams to approve.
+*                          @devotica-labs/cloud-leads @devotica-labs/security
+
+# Security-primary: node config, IAM, and the hardened launch template.
+/main.tf                   @devotica-labs/security @devotica-labs/cloud-leads
+/iam.tf                    @devotica-labs/security @devotica-labs/cloud-leads
+/launch-template.tf        @devotica-labs/security @devotica-labs/cloud-leads
+/variables.tf              @devotica-labs/security @devotica-labs/cloud-leads
+
+# CI/CD pipelines.
+/.github/                  @devotica-labs/cloud-leads @devotica-labs/security
+/.github/workflows/        @devotica-labs/cloud-leads @devotica-labs/security

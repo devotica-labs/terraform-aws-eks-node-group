@@ -1,0 +1,54 @@
+#
+# Canonical configuration for README.md (cloudposse-style doc standard,
+# native to Devotica). Run `make readme` to regenerate the terraform-docs
+# section of README.md.
+#
+
+name: terraform-aws-eks-node-group
+license: APACHE2
+github_repo: devotica-labs/terraform-aws-eks-node-group
+
+badges:
+  - name: CI
+    image: https://github.com/devotica-labs/terraform-aws-eks-node-group/actions/workflows/ci.yml/badge.svg
+    url: https://github.com/devotica-labs/terraform-aws-eks-node-group/actions/workflows/ci.yml
+  - name: Release
+    image: https://github.com/devotica-labs/terraform-aws-eks-node-group/actions/workflows/release.yml/badge.svg
+    url: https://github.com/devotica-labs/terraform-aws-eks-node-group/actions/workflows/release.yml
+  - name: License
+    image: https://img.shields.io/badge/License-Apache_2.0-blue.svg
+    url: LICENSE
+
+# Related Devotica catalog modules.
+related:
+  - name: terraform-aws-eks-cluster
+    description: EKS control plane this node group attaches to.
+    url: https://github.com/devotica-labs/terraform-aws-eks-cluster
+  - name: terraform-aws-vpc
+    description: Network + private subnets the nodes run in.
+    url: https://github.com/devotica-labs/terraform-aws-vpc
+  - name: terraform-aws-kms
+    description: Customer-managed key for encrypting the node EBS volumes.
+    url: https://github.com/devotica-labs/terraform-aws-kms
+
+description: |-
+  Terraform module to provision an EKS **managed node group** of worker nodes
+  for an existing EKS cluster — with a hardened launch template (encrypted EBS,
+  IMDSv2), an IAM role wired for SSM (no SSH), Graviton defaults, taints/labels,
+  and rolling updates. Instantiate it multiple times for different instance
+  classes, capacity types, or workloads.
+
+introduction: |-
+  This module creates an [EKS managed node group](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html)
+  for a cluster created by `terraform-aws-eks-cluster`. It always uses a launch
+  template so it can enforce a fintech-safe instance posture (encrypted root
+  volume, required IMDSv2 with a hop limit that keeps pods off the instance
+  metadata endpoint, detailed monitoring). EKS still selects the AMI for the
+  chosen `ami_type` + Kubernetes version and supplies the bootstrap userdata.
+
+usage: |-
+  See [`examples/complete`](examples/complete) for the full surface and
+  [`examples/basic`](examples/basic) for a minimal node group.
+
+# Native module — no external module dependencies.
+contributors: []
